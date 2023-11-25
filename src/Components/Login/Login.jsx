@@ -2,15 +2,23 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import { useForm } from "react-hook-form";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Providers/AuthProvider";
 import auth from "../../Firebase/firebase.config";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Login = () => {
+  const {
+    reset,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   // const auth = getAuth(app);
+  const axiosSecure = useAxiosSecure();
   const [RegError, setRegError] = useState("");
   const [showPass, setshowPass] = useState(false);
   const emailRef = useRef(null);
@@ -21,28 +29,31 @@ const Login = () => {
   const handleGoogle = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-      .then((result) => {
-        const use = result.user;
-        navigate(location?.state ? location.state : "/");
-        toast.success("Login Successfully", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+      .then((res) => {
+        const userInfo = {
+          name: res.user?.displayName,
+          email: res.user?.email,
+        };
+        axiosSecure.post("/users", userInfo).then((res) => {
+          navigate(location?.state ? location.state : "/");
+          toast.success("Login Successfully", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         });
       })
       .catch((error) => setRegError(error.message));
   };
 
-  const handleSignIn = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-
+  const onSubmit = (data) => {
+    const { email, password } = data;
+    console.log(data);
     if (password.length < 6) {
       setRegError("password should be at least 6 character or longer");
       return;
@@ -88,7 +99,7 @@ const Login = () => {
       </Helmet>
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
         <div className="card-body">
-          <form onSubmit={handleSignIn}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -98,6 +109,7 @@ const Login = () => {
                 placeholder="email"
                 className="input input-bordered w-full"
                 name="email"
+                {...register("email")}
                 ref={emailRef}
                 required
               />
@@ -111,6 +123,7 @@ const Login = () => {
                 placeholder="password"
                 className="input input-bordered w-full relative"
                 name="password"
+                {...register("password")}
                 required
               />
               <span

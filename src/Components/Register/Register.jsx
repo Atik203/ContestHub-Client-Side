@@ -6,21 +6,23 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
+  const {
+    reset,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const axiosSecure = useAxiosSecure();
 
   const { createUser } = useContext(AuthContext);
   const [RegError, setRegError] = useState("");
   const [showPass, setshowPass] = useState(false);
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const accepted = e.target.terms.checked;
-    const name = e.target.name.value;
-    const photo = e.target.photo.value;
+  const onSubmit = (data) => {
+    const { name, email, photo, password, accepted } = data;
     const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]).*$/;
     if (password.length < 6) {
       setRegError("password should be at least 6 character or longer");
@@ -107,7 +109,7 @@ const Register = () => {
       </Helmet>
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
         <div className="card-body">
-          <form onSubmit={handleRegister}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -117,6 +119,7 @@ const Register = () => {
                 placeholder="Name"
                 className="input input-bordered w-full"
                 name="name"
+                {...register("name")}
                 required
               />
             </div>
@@ -129,6 +132,7 @@ const Register = () => {
                 placeholder="Photo URL"
                 className="input input-bordered w-full"
                 name="photo"
+                {...register("photo")}
                 required
               />
             </div>
@@ -141,6 +145,7 @@ const Register = () => {
                 placeholder="email"
                 className="input input-bordered w-full"
                 name="email"
+                {...register("email")}
                 required
               />
             </div>
@@ -153,6 +158,7 @@ const Register = () => {
                 placeholder="password"
                 className="input input-bordered w-full relative"
                 name="password"
+                {...register("password")}
                 required
               />
               <span
@@ -202,7 +208,12 @@ const Register = () => {
               </span>
             </div>
             <div className="mt-2 text-base">
-              <input type="checkbox" name="terms" id="" />
+              <input
+                type="checkbox"
+                name="terms"
+                {...register("accepted")}
+                id=""
+              />
               <label htmlFor="terms">Accept our terms and conditions</label>
             </div>
             <div className="form-control mt-6">
