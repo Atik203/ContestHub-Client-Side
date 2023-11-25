@@ -2,27 +2,28 @@ import { updateProfile } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
-    reset,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const axiosSecure = useAxiosSecure();
-
   const { createUser } = useContext(AuthContext);
   const [RegError, setRegError] = useState("");
   const [showPass, setshowPass] = useState(false);
 
   const onSubmit = (data) => {
     const { name, email, photo, password, accepted } = data;
+    console.log(data);
     const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]).*$/;
     if (password.length < 6) {
       setRegError("password should be at least 6 character or longer");
@@ -76,28 +77,28 @@ const Register = () => {
       .then((useCredential) => {
         const user = useCredential.user;
 
-        const userData = { name, email, photo, password };
-        axiosSecure.post("/users", { userData }).then((res) => {
-          console.log(res);
+        const userInfo = { name, email, photo };
+        axiosSecure.post("/users", userInfo).then((res) => {
+          toast.success("Registration Completed Successfully", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          navigate(location?.state ? location.state : "/");
+          return updateProfile(user, {
+            displayName: name,
+            photoURL: photo,
+          });
         });
 
-        toast.success("Registration Completed Successfully", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-        return updateProfile(user, {
-          displayName: name,
-          photoURL: photo,
-        });
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 2000);
       })
       .catch((error) => setRegError(error.message));
   };
@@ -112,7 +113,7 @@ const Register = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text">Name</span>
               </label>
               <input
                 type="text"
@@ -125,7 +126,7 @@ const Register = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text">Photo</span>
               </label>
               <input
                 type="text"

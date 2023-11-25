@@ -9,7 +9,7 @@ import {
   signOut,
 } from "firebase/auth";
 import axios from "axios";
-import auth from "./../Firebase/firebase.config";
+import auth from "../Firebase/firebase.config";
 
 export const AuthContext = createContext(null);
 

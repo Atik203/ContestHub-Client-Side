@@ -17,11 +17,10 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  // const auth = getAuth(app);
+
   const axiosSecure = useAxiosSecure();
   const [RegError, setRegError] = useState("");
   const [showPass, setshowPass] = useState(false);
-  const emailRef = useRef(null);
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,6 +32,7 @@ const Login = () => {
         const userInfo = {
           name: res.user?.displayName,
           email: res.user?.email,
+          photo: res.user?.photoURL,
         };
         axiosSecure.post("/users", userInfo).then((res) => {
           navigate(location?.state ? location.state : "/");
@@ -53,19 +53,20 @@ const Login = () => {
 
   const onSubmit = (data) => {
     const { email, password } = data;
-    console.log(data);
+    console.log(email, password);
     if (password.length < 6) {
-      setRegError("password should be at least 6 character or longer");
+      setRegError("Password should be at least 6 characters long");
       return;
     } else if (!/[A-Z]/.test(password)) {
-      setRegError("password should contain at least one Uppercase letter");
+      setRegError("Password should contain at least one uppercase letter");
       return;
     }
-    setRegError("");
+
+    setRegError(""); // Clear any previous registration errors
+
     signIn(email, password)
-      .then((useCredential) => {
-        const user = useCredential.user;
-        navigate(location?.state ? location.state : "/");
+      .then((userCredential) => {
+        const user = userCredential.user;
         toast.success("Login Successfully", {
           position: "top-right",
           autoClose: 5000,
@@ -76,9 +77,10 @@ const Login = () => {
           progress: undefined,
           theme: "light",
         });
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
-        toast.error("Enter Valid Password or Email", {
+        toast.error("Enter a valid password or email", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -110,7 +112,6 @@ const Login = () => {
                 className="input input-bordered w-full"
                 name="email"
                 {...register("email")}
-                ref={emailRef}
                 required
               />
             </div>

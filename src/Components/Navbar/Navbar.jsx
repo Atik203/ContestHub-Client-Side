@@ -66,35 +66,22 @@ const Navbar = () => {
   const menuLinks = (
     <>
       <li>
-        <NavLink
-          to="/added-food-items"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-[#FF444A] underline" : ""
-          }
-        >
-          My Added Foods
-        </NavLink>
-      </li>
-
-      <li>
-        <NavLink
-          to="/add-food-items"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-[#FF444A] underline" : ""
-          }
-        >
-          Add Food Items
-        </NavLink>
+        <p className="text-base font-semibold">{displayName}</p>
       </li>
       <li>
         <NavLink
-          to="/ordered-food-items"
+          to="/dashboard"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-[#FF444A] underline" : ""
           }
         >
-          My Ordered Foods
+          Dashboard
         </NavLink>
+      </li>
+      <li>
+        <button onClick={handleLogout} className="text-red-500 font-bold">
+          Logout
+        </button>
       </li>
     </>
   );
@@ -155,23 +142,13 @@ const Navbar = () => {
                   alt=""
                   onClick={toggleDropdown}
                 />
-                <h1>{displayName}</h1>
                 {isDropdownOpen && (
                   <div className="absolute top-14 right-0 mt-8 bg-white text-black shadow-md w-40 rounded-md z-[2]">
-                    <ul className="menu menu-sm p-2">{menuLinks}</ul>
+                    <ul className="menu font-medium menu-sm p-2">
+                      {menuLinks}
+                    </ul>
                   </div>
                 )}
-              </div>
-
-              <div>
-                <button>
-                  <Link
-                    onClick={handleLogout}
-                    className="btn btn-primary text-white border-none hover:text-white hover:bg-gray-400 bg-red-500"
-                  >
-                    Logout
-                  </Link>
-                </button>
               </div>
             </div>
           ) : (
