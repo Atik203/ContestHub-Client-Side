@@ -24,7 +24,7 @@ const AllContests = () => {
   return (
     <div className="text-center my-20">
       <Helmet>
-        <title>Bistro Boss | Shop</title>
+        <title>All Contest</title>
       </Helmet>
 
       <div className="w-10/12 mx-auto mb-20">

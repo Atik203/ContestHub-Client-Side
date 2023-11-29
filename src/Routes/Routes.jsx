@@ -5,6 +5,8 @@ import Home from "./../Pages/Home/Home";
 import Login from "./../Components/Login/Login";
 import Register from "../Components/Register/Register";
 import AllContests from "../Pages/AllContests/AllContests";
+import Details from "../Pages/Details/Details";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
       {
         path: "/all-contest/:category",
         element: <AllContests></AllContests>,
+      },
+      {
+        path: "/details/:id",
+        element: (
+          <PrivateRoute>
+            <Details></Details>
+          </PrivateRoute>
+        ),
       },
     ],
   },

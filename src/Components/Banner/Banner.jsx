@@ -1,21 +1,9 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+
 // ..
 
-const Banner = () => {
-  const axiosSecure = useAxiosSecure();
-
-  const [foodItems, setFoodItems] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const handleSearch = () => {
-    // axiosSecure.get(`/searchFoods?q=${searchQuery}`).then((res) => {
-    //   setFoodItems(res.data);
-    // });
-  };
-
+const Banner = ({ handleSearch, searchQuery, setSearchQuery }) => {
   return (
     <div className="mx-auto ">
       <div className="relative">
