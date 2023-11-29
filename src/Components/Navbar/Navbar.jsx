@@ -42,12 +42,12 @@ const Navbar = () => {
 
       <li>
         <NavLink
-          to="/all-food-items"
+          to="/all-contest/Gaming"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-[#FF444A] underline" : ""
           }
         >
-          All Food Items
+          All Contests
         </NavLink>
       </li>
       <li>
