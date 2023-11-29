@@ -52,12 +52,22 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/blog"
+          to="/leaderboard"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-[#FF444A] underline" : ""
           }
         >
-          Blog
+          LeaderBoard
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/aboutUs"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-[#FF444A] underline" : ""
+          }
+        >
+          About Us
         </NavLink>
       </li>
     </>

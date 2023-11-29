@@ -7,6 +7,8 @@ import Register from "../Components/Register/Register";
 import AllContests from "../Pages/AllContests/AllContests";
 import Details from "../Pages/Details/Details";
 import PrivateRoute from "./PrivateRoute";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import LeaderBoard from "../Pages/LeaderBoard/LeaderBoard";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
             <Details></Details>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/aboutUs",
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/leaderboard",
+        element: <LeaderBoard></LeaderBoard>,
       },
     ],
   },
