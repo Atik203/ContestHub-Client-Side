@@ -9,6 +9,9 @@ import Details from "../Pages/Details/Details";
 import PrivateRoute from "./PrivateRoute";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import LeaderBoard from "../Pages/LeaderBoard/LeaderBoard";
+import Dashboard from "./Dashboard";
+import AllUsers from "../Pages/AllUsers/AllUsers";
+import ManageContest from "../Pages/ManageContest/ManageContest";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +50,25 @@ const router = createBrowserRouter([
       {
         path: "/leaderboard",
         element: <LeaderBoard></LeaderBoard>,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: "manageUsers",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "manageContest",
+        element: <ManageContest></ManageContest>,
       },
     ],
   },

@@ -4,7 +4,6 @@ import useAxiosSecure from "./../../Hooks/useAxiosSecure";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import LeaderBoardTable from "../../Components/LeaderBoardTable/LeaderBoardTable";
-import { idID } from "@mui/material/locale";
 
 const LeaderBoard = () => {
   const axiosSecure = useAxiosSecure();

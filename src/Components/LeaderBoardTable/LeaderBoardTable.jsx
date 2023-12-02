@@ -1,5 +1,4 @@
 import { DataGrid } from "@mui/x-data-grid";
-import React, { useCallback } from "react";
 
 const columns = [
   { field: "name", headerName: "Contest Name", width: 300 },
@@ -19,7 +18,7 @@ const columns = [
   },
 ];
 
-const LeaderBoardTable = ({ data, handleDelete }) => {
+const LeaderBoardTable = ({ data }) => {
   return (
     <div style={{ height: 600, width: "100%" }}>
       <DataGrid
@@ -29,6 +28,7 @@ const LeaderBoardTable = ({ data, handleDelete }) => {
           mx: "auto",
           fontSize: "18px",
           padding: "10px",
+          fontWeight: "bold",
         }}
         rows={data}
         columns={columns}
