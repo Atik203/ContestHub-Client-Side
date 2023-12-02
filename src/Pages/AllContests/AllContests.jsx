@@ -12,11 +12,18 @@ const AllContests = () => {
   const { Contests } = useContests();
   const initialIndex = categories.indexOf(category);
 
-  const Gaming = Contests.filter((item) => item.category === "Gaming");
-  const Business = Contests.filter((item) => item.category === "Business");
-  const Medical = Contests.filter((item) => item.category === "Medical");
+  const Gaming = Contests.filter(
+    (item) => item.category === "Gaming" && item.Confirm === "confirmed"
+  );
+  const Business = Contests.filter(
+    (item) => item.category === "Business" && item.Confirm === "confirmed"
+  );
+  const Medical = Contests.filter(
+    (item) => item.category === "Medical" && item.Confirm === "confirmed"
+  );
   const ArticleWriting = Contests.filter(
-    (item) => item.category === "Article Writing"
+    (item) =>
+      item.category === "Article Writing" && item.Confirm === "confirmed"
   );
 
   const [tabIndex, setTabIndex] = useState(initialIndex);

@@ -12,7 +12,6 @@ const Details = () => {
   useEffect(() => {
     axiosSecure.get(`/details/${id}`).then((data) => setContest(data.data));
   }, [id, axiosSecure]);
-  console.log(contest);
 
   const {
     _id,

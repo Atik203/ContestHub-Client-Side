@@ -12,6 +12,9 @@ import LeaderBoard from "../Pages/LeaderBoard/LeaderBoard";
 import Dashboard from "./Dashboard";
 import AllUsers from "../Pages/AllUsers/AllUsers";
 import ManageContest from "../Pages/ManageContest/ManageContest";
+import AddContest from "../Pages/AddContest/AddContest";
+import MyCreatedContest from "../Pages/MyCreatedContest/MyCreatedContest";
+import UpdateContest from "../Pages/UpdateContest/UpdateContest";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +72,18 @@ const router = createBrowserRouter([
       {
         path: "manageContest",
         element: <ManageContest></ManageContest>,
+      },
+      {
+        path: "add-contest",
+        element: <AddContest></AddContest>,
+      },
+      {
+        path: "created-contest",
+        element: <MyCreatedContest></MyCreatedContest>,
+      },
+      {
+        path: "updateContest/:id",
+        element: <UpdateContest></UpdateContest>,
       },
     ],
   },
