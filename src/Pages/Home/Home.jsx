@@ -5,6 +5,7 @@ import ContestCard from "../../Components/ContestCard/ContestCard";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ContestWinner from "../../Components/ContestWinner/ContestWinner";
+import BestCreator from "../../Components/BestCreator/BestCreator";
 
 const Home = () => {
   const [contests, setContest] = useState([]);
@@ -83,6 +84,19 @@ const Home = () => {
       </p>
       <div className="my-16">
         <ContestWinner></ContestWinner>
+      </div>
+      <h1 className="text-3xl font-bold text-center mt-28 md:mt-20">
+        Some of our Best Contest Creators
+      </h1>
+      <p className="text-center text-base p-4 md:text-xl text-gray-600 mt-4">
+        Dive into a journey showcasing the remarkable accomplishments of our
+        contest winners. <br />
+        Immerse yourself in a realm of creativity and innovation as you uncover
+        the captivating contests <br /> that have not only challenged
+        participants but also expanded their horizons.
+      </p>
+      <div className="my-20 bg-slate-100 mx-auto pt-24">
+        <BestCreator></BestCreator>
       </div>
     </div>
   );

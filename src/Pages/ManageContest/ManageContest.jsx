@@ -9,12 +9,11 @@ const ManageContest = () => {
     queryKey: ["contests"],
     queryFn: async () => {
       const res = await axiosSecure.get("/contests");
-      console.log(res.data);
       return res.data;
     },
   });
 
-  const handleRoleUpdate = (id) => {
+  const handleRoleUpdate = (id, contestId) => {
     try {
       Swal.fire({
         title: "Are you sure?",
@@ -31,6 +30,10 @@ const ManageContest = () => {
               refetch();
               Swal.fire("Update!", "contest has been Updated.", "success");
             }
+          });
+          console.log(contestId);
+          axiosSecure.patch(`/creator/${contestId}`).then((res) => {
+            console.log(res.data);
           });
         }
       });
@@ -87,7 +90,9 @@ const ManageContest = () => {
         <div className="text-[12px] font-light  space-x-2">
           <button
             className="btn bg-green-500 hover:text-black hover:bg-gray-300 text-white btn-sm"
-            onClick={() => handleRoleUpdate(params.row._id)}
+            onClick={() =>
+              handleRoleUpdate(params.row._id, params.row.contestId)
+            }
           >
             Confirm
           </button>

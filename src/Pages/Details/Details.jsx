@@ -72,7 +72,7 @@ const Details = () => {
       </div>
       {!isDeadlineOver && (
         <div className="ml-4">
-          <Link to={`/register/${_id}`}>
+          <Link to={`/contest-register/${_id}`}>
             <button className="btn text-white border-none bg-red-500 hover:text-black hover:bg-gray-300">
               Register Now
             </button>

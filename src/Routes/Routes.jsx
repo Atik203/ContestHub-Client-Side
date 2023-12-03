@@ -15,6 +15,7 @@ import ManageContest from "../Pages/ManageContest/ManageContest";
 import AddContest from "../Pages/AddContest/AddContest";
 import MyCreatedContest from "../Pages/MyCreatedContest/MyCreatedContest";
 import UpdateContest from "../Pages/UpdateContest/UpdateContest";
+import ContestRegister from "../Pages/ContestRegister/ContestRegister";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
       {
         path: "/leaderboard",
         element: <LeaderBoard></LeaderBoard>,
+      },
+      {
+        path: "/contest-register/:id",
+        element: (
+          <PrivateRoute>
+            <ContestRegister></ContestRegister>
+          </PrivateRoute>
+        ),
       },
     ],
   },

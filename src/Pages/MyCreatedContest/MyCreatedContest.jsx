@@ -14,7 +14,6 @@ const MyCreatedContest = () => {
     queryKey: ["creator"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/creator?email=${user?.email}`);
-      console.log(res.data);
       return res.data;
     },
   });
@@ -95,11 +94,20 @@ const MyCreatedContest = () => {
       width: 200,
       renderCell: (params) => (
         <div className="text-[12px] font-light  space-x-2">
-          <Link to={`/dashboard/updateContest/${params.row._id}`}>
-            <button className="btn bg-green-500 hover:text-black hover:bg-gray-300 text-white btn-sm">
+          {params.row.Confirm === "confirmed" ? (
+            <button
+              className="btn disabled bg-gray-300 text-gray-500 btn-sm"
+              disabled
+            >
               Edit
             </button>
-          </Link>
+          ) : (
+            <Link to={`/dashboard/updateContest/${params.row._id}`}>
+              <button className="btn bg-green-500 hover:text-black hover:bg-gray-300 text-white btn-sm">
+                Edit
+              </button>
+            </Link>
+          )}
           <button
             className="btn bg-red-500 hover:text-black hover:bg-gray-300 text-white btn-sm"
             onClick={() => handleDelete(params.row._id)}

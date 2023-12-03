@@ -35,6 +35,9 @@ const AddContest = () => {
     const winner_img = null;
     const category = selected.name;
     const email = user?.email;
+    const photo = user?.photoURL;
+    const Name = user?.displayName;
+
     const ContestData = {
       name,
       contestId,
@@ -54,6 +57,8 @@ const AddContest = () => {
       contestId,
       img,
       email,
+      photo,
+      Name,
       prize,
       category,
       participant,
