@@ -8,8 +8,10 @@ import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { useForm } from "react-hook-form";
+import useContestId from "../../Hooks/useContestId";
 
 const AddContest = () => {
+  const generateContestId = useContestId();
   const category = [
     { name: "Gaming" },
     { name: "Business" },
@@ -26,6 +28,7 @@ const AddContest = () => {
   const { user } = useContext(AuthContext);
 
   const onSubmit = (data) => {
+    const contestId = generateContestId();
     const { name, img, prize, deadline, instruction, description } = data;
     const participant = 0;
     const winner_name = null;
@@ -34,6 +37,7 @@ const AddContest = () => {
     const email = user?.email;
     const ContestData = {
       name,
+      contestId,
       img,
       prize,
       category,
@@ -47,6 +51,7 @@ const AddContest = () => {
 
     const CreatorData = {
       name,
+      contestId,
       img,
       email,
       prize,
@@ -98,6 +103,7 @@ const AddContest = () => {
               name="name"
               placeholder="Name"
               {...register("name")}
+              required
               className="input input-bordered w-full max-w-sm"
             />
           </div>
@@ -110,6 +116,7 @@ const AddContest = () => {
               name="prize"
               placeholder="Prize"
               {...register("prize")}
+              required
               className="input input-bordered w-full max-w-sm"
             />
           </div>
@@ -122,6 +129,7 @@ const AddContest = () => {
               name="img"
               placeholder="Photo Url"
               {...register("img")}
+              required
               className="input input-bordered w-full max-w-sm"
             />
           </div>
@@ -134,6 +142,7 @@ const AddContest = () => {
               name="instructions"
               placeholder="Instructions"
               {...register("instruction")}
+              required
               className="input input-bordered w-full max-w-sm"
             />
           </div>
@@ -206,6 +215,7 @@ const AddContest = () => {
               name="deadline"
               placeholder="Date"
               {...register("deadline")}
+              required
               className="input input-bordered w-full max-w-sm"
             />
           </div>
@@ -218,6 +228,7 @@ const AddContest = () => {
             name="description"
             placeholder="description"
             {...register("description")}
+            required
             className="textarea textarea-bordered w-full max-w-5xl h-32"
           ></textarea>
         </div>

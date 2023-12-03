@@ -20,7 +20,12 @@ const UpdateContest = () => {
     { name: "Medical" },
     { name: "Article Writing" },
   ];
+
+  const [contest, setContest] = useState([]);
+  const [contestData, setContestData] = useState([]);
+
   const {
+    setValue,
     register,
     handleSubmit,
     formState: { errors },
@@ -28,13 +33,31 @@ const UpdateContest = () => {
   const [selected, setSelected] = useState(category[0]);
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
-  const [contest, setContest] = useState([]);
 
   useEffect(() => {
     axiosSecure
       .get(`/singleContest/${id}`)
       .then((data) => setContest(data.data));
   }, [id, axiosSecure]);
+
+  const contestId = contest?.contestId;
+
+  useEffect(() => {
+    if (contestId) {
+      axiosSecure
+        .get(`/contestData?contestId=${contestId}`)
+        .then((res) => setContestData(res.data));
+    }
+  }, [axiosSecure, contestId, setContestData]);
+
+  useEffect(() => {
+    setValue("name", contestData.name || "");
+    setValue("prize", contestData.prize || "");
+    setValue("img", contestData.img || "");
+    setValue("instruction", contestData.instruction || "");
+    setValue("deadline", contestData.deadline || "");
+    setValue("description", contestData.description || "");
+  }, [contestData, setValue]);
 
   const onSubmit = (data) => {
     const { name, img, prize, deadline, instruction, description } = data;
@@ -69,26 +92,30 @@ const UpdateContest = () => {
       deadline,
       instruction,
     };
-    axiosSecure.patch(`/updateContest/${id}`, ContestData).then((res) => {
-      toast.success("Updated Successfully", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
+    axiosSecure
+      .patch(`/updateContest/${contestData._id}`, ContestData)
+      .then((res) => {
+        console.log(res.data);
+        toast.success("Updated Successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       });
-    });
 
     axiosSecure
-      .patch(`/updateCreatorContest/${id}`, CreatorData)
+      .patch(`/updateCreatorContest/${contest._id}`, CreatorData)
       .then((res) => {
         console.log(res.data);
       });
   };
-
+  console.log(contest);
+  console.log(contestData);
   return (
     <div className="w-11/12 mx-auto mb-20">
       <Helmet>
