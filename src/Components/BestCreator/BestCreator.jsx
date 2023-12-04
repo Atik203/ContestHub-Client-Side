@@ -8,7 +8,7 @@ const BestCreator = () => {
   const [creators, setCreator] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/bestCreator")
+    fetch("https://contest-hub-server-side.vercel.app/bestCreator")
       .then((res) => res.json())
       .then((data) => setCreator(data));
   }, []);

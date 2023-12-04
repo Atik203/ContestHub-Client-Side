@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", loggedEmail, {
+          .post("https://contest-hub-server-side.vercel.app/jwt", loggedEmail, {
             withCredentials: true,
           })
           .then((res) => {
@@ -52,9 +52,13 @@ const AuthProvider = ({ children }) => {
           });
       } else {
         axios
-          .post("http://localhost:5000/logout", loggedEmail, {
-            withCredentials: true,
-          })
+          .post(
+            "https://contest-hub-server-side.vercel.app/logout",
+            loggedEmail,
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => {
             console.log(res.data);
           });
