@@ -23,6 +23,7 @@ import ContestSubmitted from "./../Pages/ContestSubmitted/ContestSubmitted";
 import Profile from "./../Pages/Profile/Profile";
 import ParticipatedContest from "./../Pages/ParticipatedContest/ParticipatedContest";
 import WinningContest from "./../Pages/WinningContest/WinningContest";
+import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile";
 
 const router = createBrowserRouter([
   {
@@ -141,6 +142,10 @@ const router = createBrowserRouter([
       {
         path: "winning-contest",
         element: <WinningContest></WinningContest>,
+      },
+      {
+        path: "profile-update",
+        element: <UpdateProfile></UpdateProfile>,
       },
     ],
   },
