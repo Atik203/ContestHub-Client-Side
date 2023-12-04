@@ -25,6 +25,7 @@ const Details = () => {
     participant,
     instruction,
     prize,
+    price,
   } = contest;
 
   const deadlineDate = new Date(deadline);
@@ -48,10 +49,12 @@ const Details = () => {
           {description} {instruction}
         </p>
         <p className="text-base mt-2 text-justify">
-          Winning Prize:
+          Winning Prize Money:
           <span className="text-red-500 font-medium"> {prize}$</span>
         </p>
-
+        <p className="text-base my-1 font-semibold">
+          Registration Price: {price}$
+        </p>
         {!isDeadlineOver && (
           <h1 className="text-lg font-bold my-2">
             Time Remaining: <Countdown date={deadlineDate} daysInHours />

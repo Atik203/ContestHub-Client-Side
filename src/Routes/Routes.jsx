@@ -16,6 +16,13 @@ import AddContest from "../Pages/AddContest/AddContest";
 import MyCreatedContest from "../Pages/MyCreatedContest/MyCreatedContest";
 import UpdateContest from "../Pages/UpdateContest/UpdateContest";
 import ContestRegister from "../Pages/ContestRegister/ContestRegister";
+import AdminRoute from "./AdminRoute";
+import CreatorRoute from "./CreatorRoute";
+import Success from "../Components/Success/Success";
+import ContestSubmitted from "./../Pages/ContestSubmitted/ContestSubmitted";
+import Profile from "./../Pages/Profile/Profile";
+import ParticipatedContest from "./../Pages/ParticipatedContest/ParticipatedContest";
+import WinningContest from "./../Pages/WinningContest/WinningContest";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +70,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/success",
+        element: (
+          <PrivateRoute>
+            <Success></Success>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
@@ -76,23 +91,64 @@ const router = createBrowserRouter([
     children: [
       {
         path: "manageUsers",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageContest",
-        element: <ManageContest></ManageContest>,
+        element: (
+          <AdminRoute>
+            <ManageContest></ManageContest>
+          </AdminRoute>
+        ),
       },
       {
         path: "add-contest",
-        element: <AddContest></AddContest>,
+        element: (
+          <CreatorRoute>
+            <AddContest></AddContest>
+          </CreatorRoute>
+        ),
       },
       {
         path: "created-contest",
-        element: <MyCreatedContest></MyCreatedContest>,
+        element: (
+          <CreatorRoute>
+            <MyCreatedContest></MyCreatedContest>
+          </CreatorRoute>
+        ),
       },
       {
         path: "updateContest/:id",
-        element: <UpdateContest></UpdateContest>,
+        element: (
+          <CreatorRoute>
+            {" "}
+            <UpdateContest></UpdateContest>
+          </CreatorRoute>
+        ),
+      },
+      {
+        path: "contest-submitted",
+        element: (
+          <CreatorRoute>
+            <ContestSubmitted></ContestSubmitted>
+          </CreatorRoute>
+        ),
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>,
+      },
+      {
+        path: "participated-contest",
+        element: <ParticipatedContest></ParticipatedContest>,
+      },
+      {
+        path: "winning-contest",
+        element: <WinningContest></WinningContest>,
       },
     ],
   },

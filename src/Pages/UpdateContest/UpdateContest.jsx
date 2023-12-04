@@ -60,17 +60,20 @@ const UpdateContest = () => {
   }, [contestData, setValue]);
 
   const onSubmit = (data) => {
-    const { name, img, prize, deadline, instruction, description } = data;
+    const { name, img, prize, Price, deadline, instruction, description } =
+      data;
     const participant = 0;
     const winner_name = null;
     const winner_img = null;
     const category = selected.name;
     const email = user?.email;
+    const price = parseInt(Price);
     const ContestData = {
       name,
       img,
       prize,
       category,
+      price,
       participant,
       winner_name,
       winner_img,
@@ -85,6 +88,7 @@ const UpdateContest = () => {
       email,
       prize,
       category,
+      price,
       participant,
       winner_name,
       winner_img,
@@ -162,6 +166,19 @@ const UpdateContest = () => {
               name="img"
               placeholder="Photo Url"
               {...register("img")}
+              className="input input-bordered w-full max-w-sm"
+            />
+          </div>
+          <div className="form-control w-full max-w-sm">
+            <label className="label">
+              <span className="label-text font-medium">Registration Price</span>
+            </label>
+            <input
+              type="text"
+              name="Price"
+              placeholder="Price"
+              {...register("Price")}
+              required
               className="input input-bordered w-full max-w-sm"
             />
           </div>

@@ -101,7 +101,7 @@ const Dashboard = () => {
   }
   return (
     <div>
-      <div className="drawer lg:drawer-open">
+      <div className="drawer  lg:drawer-open">
         <Helmet>
           <title>Dashboard</title>
         </Helmet>
@@ -115,7 +115,7 @@ const Dashboard = () => {
           </label>
           <Outlet />
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side ">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"

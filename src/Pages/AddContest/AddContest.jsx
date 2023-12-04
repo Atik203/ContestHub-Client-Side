@@ -29,7 +29,8 @@ const AddContest = () => {
 
   const onSubmit = (data) => {
     const contestId = generateContestId();
-    const { name, img, prize, deadline, instruction, description } = data;
+    const { name, img, prize, deadline, Price, instruction, description } =
+      data;
     const participant = 0;
     const winner_name = null;
     const winner_img = null;
@@ -37,11 +38,13 @@ const AddContest = () => {
     const email = user?.email;
     const photo = user?.photoURL;
     const Name = user?.displayName;
+    const price = parseInt(Price);
 
     const ContestData = {
       name,
       contestId,
       img,
+      price,
       prize,
       category,
       participant,
@@ -59,6 +62,7 @@ const AddContest = () => {
       email,
       photo,
       Name,
+      price,
       prize,
       category,
       participant,
@@ -134,6 +138,19 @@ const AddContest = () => {
               name="img"
               placeholder="Photo Url"
               {...register("img")}
+              required
+              className="input input-bordered w-full max-w-sm"
+            />
+          </div>
+          <div className="form-control w-full max-w-sm">
+            <label className="label">
+              <span className="label-text font-medium">Registration Price</span>
+            </label>
+            <input
+              type="text"
+              name="Price"
+              placeholder="Price"
+              {...register("Price")}
               required
               className="input input-bordered w-full max-w-sm"
             />

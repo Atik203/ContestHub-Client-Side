@@ -10,7 +10,6 @@ const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const { displayName, photoURL } = user || {};
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  console.log(displayName, photoURL);
   const handleLogout = () => {
     logout()
       .then(
