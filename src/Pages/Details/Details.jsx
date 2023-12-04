@@ -8,10 +8,19 @@ const Details = () => {
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [contest, setContest] = useState([]);
+  const [registered, setRegistered] = useState(false);
 
   useEffect(() => {
     axiosSecure.get(`/details/${id}`).then((data) => setContest(data.data));
   }, [id, axiosSecure]);
+
+  useEffect(() => {
+    async () => {
+      await axiosSecure
+        .get(`/registered/${contest?.contestId}`)
+        .then((res) => setRegistered(res.data));
+    };
+  }, [axiosSecure, contest.contestId]);
 
   const {
     _id,
@@ -73,14 +82,21 @@ const Details = () => {
           </div>
         )}
       </div>
-      {!isDeadlineOver && (
-        <div className="ml-4">
-          <Link to={`/contest-register/${_id}`}>
-            <button className="btn text-white border-none bg-red-500 hover:text-black hover:bg-gray-300">
-              Register Now
-            </button>
-          </Link>
+      {registered.registered === "false" ? (
+        <div>
+          {" "}
+          {!isDeadlineOver && (
+            <div className="ml-4">
+              <Link to={`/contest-register/${_id}`}>
+                <button className="btn text-white border-none bg-red-500 hover:text-black hover:bg-gray-300">
+                  Register Now
+                </button>
+              </Link>
+            </div>
+          )}{" "}
         </div>
+      ) : (
+        <h1 className="text-red-500 ml-3 font-bold">You Already Registered</h1>
       )}
     </div>
   );

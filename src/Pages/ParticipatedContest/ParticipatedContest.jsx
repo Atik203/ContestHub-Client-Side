@@ -47,6 +47,13 @@ const ParticipatedContest = () => {
         const now = new Date();
         const isDeadlineOver = deadlineDate < now;
 
+        if (isDeadlineOver) {
+          return (
+            <>
+              <h1 className="text-red-500">Deadline Over</h1>
+            </>
+          );
+        }
         return (
           <Countdown
             date={deadlineDate}
