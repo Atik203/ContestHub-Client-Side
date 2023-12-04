@@ -1,20 +1,19 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useState } from "react";
-import { useEffect } from "react";
 import Swal from "sweetalert2";
 import { DataGrid } from "@mui/x-data-grid";
+import useParticipants from "../../Hooks/useParticipants";
 
 const ContestSubmitted = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-
-  const [participants, setParticipant] = useState([]);
-
-  useEffect(() => {
-    axiosSecure.get("/all-participant").then((res) => setParticipant(res.data));
-  }, [axiosSecure]);
+  const [participants, refetch, dataLoading] = useParticipants();
+  if (dataLoading) {
+    return (
+      <span className="loading loading-spinner text-center mt-40 loading-lg"></span>
+    );
+  }
 
   const handleRoleUpdate = (id, name) => {
     try {
@@ -30,6 +29,7 @@ const ContestSubmitted = () => {
         if (result.isConfirmed) {
           axiosSecure.patch(`/setWinner/${id}`, { name }).then((res) => {
             if (res.data.modifiedCount > 0) {
+              refetch();
               Swal.fire("Update!", "User has been Updated.", "success");
             }
           });

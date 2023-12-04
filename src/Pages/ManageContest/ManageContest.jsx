@@ -128,7 +128,7 @@ const ManageContest = () => {
             paginationModel: { page: 0, pageSize: 10 },
           },
         }}
-        pageSizeOptions={[10, 15, 20]}
+        pageSizeOptions={[10, 15, 20, 50]}
       />
     </div>
   );

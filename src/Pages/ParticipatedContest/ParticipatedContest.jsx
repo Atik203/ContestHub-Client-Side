@@ -26,7 +26,7 @@ const ParticipatedContest = () => {
       headerName: "Result",
       width: 100,
       renderCell: (params) => {
-        return params.row.winner_name === user?.displayName ? (
+        return params.row.winner_name === params.row.Name ? (
           <h1 className="font-semibold text-green-500">Winner</h1>
         ) : (
           <h1 className=" text-red-500 font-semibold">Lost</h1>

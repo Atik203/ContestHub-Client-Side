@@ -70,6 +70,7 @@ const AllUsers = () => {
       field: "role",
       headerName: "Role",
       width: 90,
+      valueGetter: (params) => params.row.role || "normal",
     },
     {
       headerName: "Actions",
