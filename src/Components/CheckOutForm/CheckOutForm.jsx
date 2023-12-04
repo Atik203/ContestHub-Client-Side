@@ -8,13 +8,21 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const CheckOutForm = ({ contest }) => {
-  const { _id, contestId, name, price, deadline, category, winner_name } =
-    contest;
+  const {
+    _id,
+    contestId,
+    name,
+    price,
+    deadline,
+    category,
+    winner_name,
+    prize,
+  } = contest;
   const [error, setError] = useState("");
   const stripe = useStripe();
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState("");
-  const [paymentId, setPaymentId] = useState(null);
+  const [paymentId, setPaymentId] = useState("");
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   useEffect(() => {
@@ -40,10 +48,8 @@ const CheckOutForm = ({ contest }) => {
 
     if (error) {
       setError(error.message);
-      console.log("[error]", error);
     } else {
       setError("");
-      console.log("[PaymentMethod]", paymentMethod);
     }
 
     const { paymentIntent, error: confirmError } =
@@ -57,25 +63,25 @@ const CheckOutForm = ({ contest }) => {
         },
       });
     if (confirmError) {
-      console.log(confirmError);
       setError(confirmError.message);
     } else {
       setError("");
       setPaymentId(paymentIntent.id);
-      console.log(paymentIntent);
+
       const payment = {
         email: user?.email,
         Name: user?.displayName,
-        name: name,
-        contestId: contestId,
-        price: price,
+        name,
+        contestId,
+        price,
         ID: _id,
-        paymentId: paymentId,
-        deadline: deadline,
+        paymentId: paymentIntent.id,
+        deadline,
         date: new Date(),
-        category: category,
-        winner_name: winner_name,
+        category,
+        winner_name,
         status: "pending",
+        prize,
       };
 
       axiosSecure.post("/payment", payment).then((res) => {

@@ -82,7 +82,7 @@ const Details = () => {
           </div>
         )}
       </div>
-      {registered.registered === "false" ? (
+      {registered === false ? (
         <div>
           {" "}
           {!isDeadlineOver && (

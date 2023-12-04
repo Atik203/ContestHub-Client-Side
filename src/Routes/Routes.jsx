@@ -18,7 +18,7 @@ import UpdateContest from "../Pages/UpdateContest/UpdateContest";
 import ContestRegister from "../Pages/ContestRegister/ContestRegister";
 import AdminRoute from "./AdminRoute";
 import CreatorRoute from "./CreatorRoute";
-import Success from "../Components/Success/Success";
+
 import ContestSubmitted from "./../Pages/ContestSubmitted/ContestSubmitted";
 import Profile from "./../Pages/Profile/Profile";
 import ParticipatedContest from "./../Pages/ParticipatedContest/ParticipatedContest";
@@ -67,14 +67,6 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ContestRegister></ContestRegister>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/success",
-        element: (
-          <PrivateRoute>
-            <Success></Success>
           </PrivateRoute>
         ),
       },

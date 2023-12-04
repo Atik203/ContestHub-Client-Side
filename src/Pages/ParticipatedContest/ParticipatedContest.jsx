@@ -17,11 +17,6 @@ const ParticipatedContest = () => {
     });
   }, [axiosSecure, user.email]);
 
-  // const deadlineDate = new Date(deadline);
-  // const now = new Date();
-  // const isDeadlineOver = deadlineDate < now;
-
-  console.log(contests);
   const columns = [
     { field: "Name", headerName: "Name", width: 180 },
     { field: "name", headerName: "Contest Name", width: 300 },
@@ -32,7 +27,7 @@ const ParticipatedContest = () => {
       width: 100,
       renderCell: (params) => {
         return params.row.winner_name === user?.displayName ? (
-          <h1 className="font-semibold text-green-500">Winned</h1>
+          <h1 className="font-semibold text-green-500">Winner</h1>
         ) : (
           <h1 className=" text-red-500 font-semibold">Lost</h1>
         );
