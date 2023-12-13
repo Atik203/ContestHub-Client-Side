@@ -89,6 +89,15 @@ Welcome to ContestHub, the ultimate platform where innovation meets recognition!
   npm start
   ```
 
+3. **Testing Credentials**:
+
+- Admin Credentials:
+  Email: admin@gmail.com
+  Password: Admin123@
+- Contest Creator Credentials:
+  Email: creator@gmail.com
+  Password: Creator123@
+
 ## Live Demo
 
 Check out the live demo of the project at [ContestHub](https://contesthub.surge.sh/). Experience the application's features and functionalities in action.
