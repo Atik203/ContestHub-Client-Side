@@ -1,6 +1,6 @@
 # ContestHub Project
 
-Welcome to ContestHub, the ultimate platform where innovation meets recognition! ContestHub is a dynamic and user-friendly Project Contest Creation Platform designed to foster creativity, engage communities, and celebrate talent across various domains. Whether you're organizing a design competition, coding challenge, or any other creative contest, ContestHub is your go-to destination for seamless contest creation and efficient winner selection. Below is a detailed overview of the project's key features and technologies:
+Welcome to ContestHub, the ultimate platform where innovation meets recognition! ContestHub is a dynamic and user-friendly Contest Creation Platform designed to foster creativity, engage communities, and celebrate talent across various domains. Whether you're organizing a design competition, coding challenge, or any other creative contest, ContestHub is your go-to destination for seamless contest creation and efficient winner selection. Below is a detailed overview of the project's key features and technologies:
 
 ## Technologies Used
 
@@ -28,11 +28,11 @@ Welcome to ContestHub, the ultimate platform where innovation meets recognition!
 
 - **Chart.js**: Utilized for creating dynamic and visually appealing charts, such as the status pie chart on the dashboard.
 
-- **Pagination**: Implemented for effective navigation through large datasets, enhancing usability.
+<!-- - **Pagination**: Implemented for effective navigation through large datasets, enhancing usability.
 
 - **Search Functionality**: Backend-integrated search functionality for efficient data retrieval based on user queries.
 
-- **Filtering**: The application provides filtering options for users to narrow down search results based on specific criteria.
+- **Filtering**: The application provides filtering options for users to narrow down search results based on specific criteria. -->
 
 - **Secure Payments with Stripe:** Ensure a secure and streamlined payment process using Stripe, allowing participants to make transactions with confidence.
 
@@ -56,11 +56,11 @@ Welcome to ContestHub, the ultimate platform where innovation meets recognition!
 
 - **Chart.js Integration**: Dynamic charts created using Chart.js for visual representation of contest data.
 
-- **Pagination**: Effective pagination for large datasets, providing users with seamless navigation through content.
+<!-- - **Pagination**: Effective pagination for large datasets, providing users with seamless navigation through content.
 
 - **Search Functionality**: Backend-integrated search functionality allows users to quickly find relevant contests.
 
-- **Filtering Options**: Users can filter search results based on specific criteria, streamlining the data retrieval process.
+- **Filtering Options**: Users can filter search results based on specific criteria, streamlining the data retrieval process. -->
 
 ## Getting Started
 
@@ -95,4 +95,3 @@ Check out the server-side code of this project [Click Here](https://github.com/A
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt) file for details.
-

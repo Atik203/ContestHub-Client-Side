@@ -1,6 +1,6 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -12,7 +12,6 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Login = () => {
   const {
-    reset,
     register,
     handleSubmit,
     formState: { errors },

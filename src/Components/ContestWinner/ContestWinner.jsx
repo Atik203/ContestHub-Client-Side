@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
