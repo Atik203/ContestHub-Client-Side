@@ -28,6 +28,8 @@ Welcome to ContestHub, the ultimate platform where innovation meets recognition!
 
 - **Chart.js**: Utilized for creating dynamic and visually appealing charts, such as the status pie chart on the dashboard.
 
+- **TanStack Query**: Data fetching and refetching using TanStack queries in this project.
+
 <!-- - **Pagination**: Implemented for effective navigation through large datasets, enhancing usability.
 
 - **Search Functionality**: Backend-integrated search functionality for efficient data retrieval based on user queries.
